@@ -14,10 +14,10 @@ class UInt128 : public ExtNums
         //void Setbig(long long unsigned int val) { big = val; }
         //long long unsigned int Getlittle() { return little; }
         //void Setlittle(long long unsigned int val) { little = val; }
-        UInt128* operator+(ExtNums*);
-        UInt128* operator-(ExtNums*);
-        UInt128* operator*(ExtNums*);
-        UInt128* operator/(ExtNums*);
+        UInt128* operator+(UInt128*);
+        UInt128* operator-(UInt128*);
+        UInt128* operator*(UInt128*);
+        UInt128* operator/(UInt128*);
         std::ostream& operator<<(std::ostream&);
 
     protected:
