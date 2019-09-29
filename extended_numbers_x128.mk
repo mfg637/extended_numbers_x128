@@ -60,7 +60,7 @@ AS       := /usr/bin/as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/src_int_UInt128.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) 
 
 
 
@@ -91,6 +91,14 @@ PreBuild:
 ##
 ## Objects
 ##
+$(IntermediateDirectory)/src_int_UInt128.cpp$(ObjectSuffix): src/int/UInt128.cpp $(IntermediateDirectory)/src_int_UInt128.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/mnt/data/Matvey/temp/codelite_workspace/labosvalka2019_2020/extended_numbers_x128/src/int/UInt128.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_int_UInt128.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/src_int_UInt128.cpp$(DependSuffix): src/int/UInt128.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_int_UInt128.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/src_int_UInt128.cpp$(DependSuffix) -MM src/int/UInt128.cpp
+
+$(IntermediateDirectory)/src_int_UInt128.cpp$(PreprocessSuffix): src/int/UInt128.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_int_UInt128.cpp$(PreprocessSuffix) src/int/UInt128.cpp
+
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "/mnt/data/Matvey/temp/codelite_workspace/labosvalka2019_2020/extended_numbers_x128/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
