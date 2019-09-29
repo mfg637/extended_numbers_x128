@@ -9,10 +9,10 @@ class ExtNums
     public:
         ExtNums() {}
         virtual ~ExtNums();
-        virtual ExtNums* operator+(ExtNums*)=0;
-        virtual ExtNums* operator-(ExtNums*)=0;
-        virtual ExtNums* operator*(ExtNums*)=0;
-        virtual ExtNums* operator/(ExtNums*)=0;
+        virtual ExtNums& operator+(ExtNums&)=0;
+        virtual ExtNums& operator-(ExtNums&)=0;
+        virtual ExtNums& operator*(ExtNums&)=0;
+        virtual ExtNums& operator/(ExtNums&)=0;
         virtual std::ostream& operator<<(std::ostream&)=0;
 
 };
