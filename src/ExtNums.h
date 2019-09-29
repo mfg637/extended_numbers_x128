@@ -8,7 +8,7 @@ class ExtNums
     protected:
     public:
         ExtNums() {}
-        virtual ~ExtNums();
+        virtual ~ExtNums() = default;
         virtual ExtNums& operator+(ExtNums&)=0;
         virtual ExtNums& operator-(ExtNums&)=0;
         virtual ExtNums& operator*(ExtNums&)=0;
@@ -16,7 +16,5 @@ class ExtNums
         virtual std::ostream& operator<<(std::ostream&)=0;
 
 };
-
-ExtNums::~ExtNums(){}
 
 #endif // EXTNUMS_H
