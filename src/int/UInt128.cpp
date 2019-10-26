@@ -22,7 +22,8 @@ UInt128& UInt128::operator-(UInt128& b){
 }
 
 UInt128& UInt128::operator*(UInt128& b){
-    return *this;
+	calc_results<long long unsigned> results = mul(b.big, b.little);
+    return *(new UInt128(results.big, results.little));
 }
 UInt128& UInt128::operator/(UInt128& b){
     return *this;

@@ -9,5 +9,6 @@ int main(int argc, char **argv)
 	UInt128 b(0, 2);
 	UInt128 result1 = a+b;
 	UInt128 result2 = result1 - b;
+	UInt128 result3 = a * b;
     return 0;
 }
