@@ -12,24 +12,13 @@ UInt128::~UInt128()
 }
 
 UInt128& UInt128::operator+(UInt128& b){
-	long long unsigned big, little;
-    char overflow = 2;
-    asm volatile(
-		"addq %%rbx, %%rax\n\t"
-		"movb $0, %%dl\n\t"
-		"jnc 1f\n\t"
-		"movb $1, %%dl\n\t"
-		"1:"
-		: "=a" (little), "=d" (overflow)
-		: "b" (this->little), "a" (b.little) 
-	);
-	big = this->big + b.big;
-	big += overflow;
-    return *(new UInt128(big, little));
+	calc_results<long long unsigned> results = add(b.big, b.little);
+    return *(new UInt128(results.big, results.little));
 }
 
 UInt128& UInt128::operator-(UInt128& b){
-    return *this;
+	calc_results<long long unsigned> results = sub(b.big, b.little);
+    return *(new UInt128(results.big, results.little));
 }
 
 UInt128& UInt128::operator*(UInt128& b){

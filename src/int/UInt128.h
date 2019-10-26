@@ -7,8 +7,6 @@
 class UInt128 : public ExtNums
 {
     private:
-        long long unsigned int big;
-        long long unsigned int little;
 
     protected:
 
