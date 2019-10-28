@@ -159,7 +159,7 @@ class ExtNums
         virtual ExtNums& operator-(ExtNums&)=0;
         virtual ExtNums& operator*(ExtNums&)=0;
         virtual ExtNums& operator/(ExtNums&)=0;
-        virtual std::ostream& operator<<(std::ostream&)=0;
+        //virtual std::ostream& operator<<(std::ostream&)=0;
 
 };
 
