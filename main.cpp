@@ -19,5 +19,7 @@ int main(int argc, char **argv)
 	std::cout << "c = " << c << std::endl;
 	UInt128 result4 = a * c;
 	std::cout << "result4 = " << result4 << std::endl;
+	UInt128 result5 = result4 / c;
+	std::cout << "result5 = " << result5 << std::endl;
     return 0;
 }

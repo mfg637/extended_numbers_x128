@@ -25,8 +25,35 @@ UInt128& UInt128::operator*(UInt128& b){
 	calc_results<long long unsigned> results = mul(b.big, b.little);
     return *(new UInt128(results.big, results.little));
 }
+
 UInt128& UInt128::operator/(UInt128& b){
-    return *this;
+	long long unsigned normal_little=this->little, normal_big=this->big;
+	long long unsigned result_count_little=0, result_count_big = 0;
+	#ifdef __x86_64__
+		if (b.big == 0){
+			asm(
+				"divq %%rbx\n\t"
+				: "=a" (result_count_little)
+				: "a" (normal_little), "d" (normal_big), "b" (b.little)
+			);
+		}else{
+			while (((normal_big == b.big) && (normal_little >= b.little)) || (normal_big > b.big)){
+				asm(
+					"subq %%rbx, %%rax\n\t"
+					"sbbq %%rcx, %%rdx\n\t"
+					: "=a" (normal_little), "=d" (normal_big)
+					: "b" (b.little), "a" (normal_little), "c" (b.big), "d" (normal_big)
+				);
+				asm(
+					"addq %%rbx, %%rax\n\t"
+					"adcq %%rcx, %%rdx\n\t"
+					: "=a" (result_count_little), "=d" (result_count_big)
+					: "b" (1), "a" (result_count_little), "c" (0), "d" (result_count_big)
+				);
+			}
+		}
+	#endif
+    return *(new UInt128(result_count_big, result_count_little));
 }
 std::ostream& operator<<(std::ostream& out, UInt128& number){
 	const unsigned digits_count = 39;
