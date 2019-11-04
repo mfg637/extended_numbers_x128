@@ -4,7 +4,7 @@
 #include "../ExtNums.h"
 
 
-class UInt128 : public ExtNums
+class UInt128 : public ExtNums<long long unsigned>
 {
     private:
 

@@ -4,11 +4,12 @@
 #include <cmath>
 #include <typeinfo>
 
+template <typename BIG_PART_TYPE>
 class ExtNums
 {
     private:
 	protected:
-		long long unsigned int big;
+		BIG_PART_TYPE big;
         long long unsigned int little;
 		template <typename BIG_PART_TYPE>
 		struct calc_results{
@@ -23,7 +24,6 @@ class ExtNums
 					std::cout << "INCORECT_PROGRAM!";
 			}
 		};
-		template <typename BIG_PART_TYPE>
 		calc_results<BIG_PART_TYPE> add(BIG_PART_TYPE big, long long unsigned little){
 			calc_results<BIG_PART_TYPE> results;
 			#ifdef __x86_64__
@@ -52,7 +52,6 @@ class ExtNums
 			return results;
 			
 		}
-		template <typename BIG_PART_TYPE>
 		calc_results<BIG_PART_TYPE> sub(BIG_PART_TYPE big, long long unsigned little){
 			calc_results<BIG_PART_TYPE> results;
 			#ifdef __x86_64__
@@ -68,7 +67,6 @@ class ExtNums
 			#endif
 			return results;
 		}
-		template <typename BIG_PART_TYPE>
 		calc_results<BIG_PART_TYPE> mul(BIG_PART_TYPE big, long long unsigned little, bool offset = false){
 			calc_results<BIG_PART_TYPE> results;
 			BIG_PART_TYPE normal_big=0, overflow_big=0;
