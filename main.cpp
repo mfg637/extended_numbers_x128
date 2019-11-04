@@ -1,5 +1,6 @@
 #include <iostream>
 #include "src/int/UInt128.h"
+#include "src/int/Int128.h"
 
 int main(int argc, char **argv)
 {
@@ -21,5 +22,7 @@ int main(int argc, char **argv)
 	std::cout << "result4 = " << result4 << std::endl;
 	UInt128 result5 = result4 / c;
 	std::cout << "result5 = " << result5 << std::endl;
+	Int128 d(0xffffffffffffffff, 0xffffffffffffffff);
+	std::cout << "d = " << d;
     return 0;
 }

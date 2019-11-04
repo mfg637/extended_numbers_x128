@@ -17,10 +17,10 @@ class UInt128 : public ExtNums<long long unsigned>
         UInt128& operator-(UInt128&);
         UInt128& operator*(UInt128&);
         UInt128& operator/(UInt128&);
-		ExtNums& operator+(ExtNums&);
-        ExtNums& operator-(ExtNums&);
-        ExtNums& operator*(ExtNums&);
-        ExtNums& operator/(ExtNums&);
+		ExtNums<long long unsigned>& operator+(ExtNums&);
+        ExtNums<long long unsigned>& operator-(ExtNums&);
+        ExtNums<long long unsigned>& operator*(ExtNums&);
+        ExtNums<long long unsigned>& operator/(ExtNums&);
         friend std::ostream& operator<<(std::ostream&, UInt128&);
 };
 

@@ -5,25 +5,26 @@
 #include <typeinfo>
 
 template <typename BIG_PART_TYPE>
+struct calc_results{
+	BIG_PART_TYPE big;
+	long long unsigned little;
+	void set(BIG_PART_TYPE _big, long long unsigned _little){
+		big = _big;
+		if (big != _big)
+			std::cout << "INCORECT_PROGRAM!";
+		little = _little;
+		if (little != little)
+			std::cout << "INCORECT_PROGRAM!";
+	}
+};
+
+template <typename BIG_PART_TYPE>
 class ExtNums
 {
     private:
 	protected:
 		BIG_PART_TYPE big;
         long long unsigned int little;
-		template <typename BIG_PART_TYPE>
-		struct calc_results{
-			BIG_PART_TYPE big;
-			long long unsigned little;
-			void set(BIG_PART_TYPE _big, long long unsigned _little){
-				big = _big;
-				if (big != _big)
-					std::cout << "INCORECT_PROGRAM!";
-				little = _little;
-				if (little != little)
-					std::cout << "INCORECT_PROGRAM!";
-			}
-		};
 		calc_results<BIG_PART_TYPE> add(BIG_PART_TYPE big, long long unsigned little){
 			calc_results<BIG_PART_TYPE> results;
 			#ifdef __x86_64__
@@ -157,6 +158,8 @@ class ExtNums
         virtual ExtNums& operator-(ExtNums&)=0;
         virtual ExtNums& operator*(ExtNums&)=0;
         virtual ExtNums& operator/(ExtNums&)=0;
+        BIG_PART_TYPE getBig(){return big;}
+        long long unsigned getLittle(){return little;}
         //virtual std::ostream& operator<<(std::ostream&)=0;
 
 };
