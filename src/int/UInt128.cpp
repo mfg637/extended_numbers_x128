@@ -121,3 +121,19 @@ ExtNums<long long unsigned>& UInt128::operator*(ExtNums& b){
 ExtNums<long long unsigned>& UInt128::operator/(ExtNums& b){
 	return (ExtNums&)(this->operator/((UInt128&)(b)));
 }
+
+std::istream& operator>>(std::istream& in, UInt128& number){
+	UInt128 result(0, 0);
+	char c = in.get();
+	UInt128 _10(0, 10);
+	while ((c!= '\n' )&&(c != 0)){
+		UInt128 digit(0, c-(char)(48));
+		//UInt128& oldresult = result;
+		result = result*_10+digit;
+		//delete &oldresult;
+		c = in.get();
+	}
+	number.big = result.getBig();
+	number.little = result.getLittle();
+	return in;
+}

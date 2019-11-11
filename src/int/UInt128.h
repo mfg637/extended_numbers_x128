@@ -22,6 +22,7 @@ class UInt128 : public ExtNums<long long unsigned>
         ExtNums<long long unsigned>& operator*(ExtNums&);
         ExtNums<long long unsigned>& operator/(ExtNums&);
         friend std::ostream& operator<<(std::ostream&, UInt128&);
+        friend std::istream& operator>>(std::istream&, UInt128&);
 };
 
 #endif // UINT128_H
