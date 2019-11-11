@@ -23,6 +23,22 @@ int main(int argc, char **argv)
 	UInt128 result5 = result4 / c;
 	std::cout << "result5 = " << result5 << std::endl;
 	Int128 d(0xffffffffffffffff, 0xffffffffffffffff);
-	std::cout << "d = " << d;
+	std::cout << "d = " << d << std::endl;
+	Int128 e(0, 2);
+	std::cout << "e = " << e << std::endl;
+	Int128 result6 = d + e;
+	std::cout<< "result6 = " << result6 <<std::endl;
+	Int128 result7 = d - e;
+	std::cout << "result7 = " << result7 << std::endl;
+	Int128 result8 = result6 * e;
+	std::cout << "result8 = " << result8 << std::endl;
+	Int128 result9 = result8 / e;
+	std::cout << "result9 = " << result9 << std::endl;
+	Int128 result10 = d * e - e;
+	std::cout << "result10 = "<< result10 << std::endl;
+	UInt128 f(0, 0);
+	std::cout << "f = ";
+	std::cin >> f;
+	std::cout << "f = " << f << std::endl;
     return 0;
 }
