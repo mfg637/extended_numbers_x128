@@ -7,6 +7,7 @@ class Int128 : public ExtNums<long long int>
 {
 	public:
 		Int128(long long int big_part, long long unsigned little_part);
+		Int128(const char*);
         ~Int128();
         Int128& operator+(Int128&);
         Int128& operator-(Int128&);

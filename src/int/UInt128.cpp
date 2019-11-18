@@ -1,9 +1,16 @@
 #include "UInt128.h"
+#include <sstream>
 
 UInt128::UInt128(long long unsigned big_part, long long unsigned little_part)
 {
     this->big = big_part;
 	this->little = little_part;
+}
+
+UInt128:: UInt128(const char* string){
+	std::stringstream s;
+	s << string;
+	s >> *this;
 }
 
 UInt128::~UInt128()

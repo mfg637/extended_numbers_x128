@@ -54,5 +54,9 @@ int main(int argc, char **argv)
 		std::cout << "incorrent 128bit signed integer number";
 		return 1;
 	}
+	UInt128 h("150");
+	std::cout << "h = " << h << std::endl;
+	Int128 m("-150");
+	std::cout << "m = " << m << std::endl;
     return 0;
 }

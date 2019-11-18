@@ -1,9 +1,16 @@
 #include "Int128.h"
+#include <sstream>
 
 Int128::Int128(long long int big_part, long long unsigned little_part)
 {
     this->big = big_part;
 	this->little = little_part;
+}
+
+Int128::Int128(const char* string){
+	std::stringstream s;
+	s << string;
+	s >> *this;
 }
 
 Int128::~Int128()

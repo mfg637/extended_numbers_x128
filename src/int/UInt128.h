@@ -12,6 +12,7 @@ class UInt128 : public ExtNums<long long unsigned>
 
     public:
         UInt128(long long unsigned big_part, long long unsigned little_part);
+        UInt128(const char*);
         ~UInt128();
         UInt128& operator+(UInt128&);
         UInt128& operator-(UInt128&);
