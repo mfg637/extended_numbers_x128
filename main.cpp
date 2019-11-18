@@ -39,6 +39,20 @@ int main(int argc, char **argv)
 	UInt128 f(0, 0);
 	std::cout << "f = ";
 	std::cin >> f;
-	std::cout << "f = " << f << std::endl;
+	if (!std::cin.bad()){
+		std::cout << "f = " << f << std::endl;
+	}else{
+		std::cout << "incorrent 128bit unsigned number";
+		return 1;
+	}
+	Int128 g(0, 0);
+	std::cout << "g = ";
+	std::cin >> g;
+	if (!std::cin.bad()){
+		std::cout << "g = " << g << std::endl;
+	}else{
+		std::cout << "incorrent 128bit signed integer number";
+		return 1;
+	}
     return 0;
 }

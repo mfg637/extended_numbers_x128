@@ -168,18 +168,15 @@ std::istream& operator>>(std::istream& in, Int128& number){
 	}
 	number.big = result.getBig();
 	number.little = result.getLittle();
-	std::cout << "big = " << number.big << " little = " << number.little << std::endl;
 	if (negative){
 		number.big = ~number.big;
 		number.little = ~number.little;
-		std::cout << "big = " << number.big << " little = " << number.little << std::endl;
 		asm(
 			"addq %%rbx, %%rax\n\t"
 			"adcq %%rcx, %%rdx\n\t"
 			: "=a" (number.little), "=d" (number.big)
 			: "b" (number.little), "a" (1), "c" (number.big), "d" (0)
 		);
-		std::cout << "big = " << number.big << " little = " << number.little << std::endl;
 	}
 	return in;
 }
