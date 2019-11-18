@@ -123,15 +123,27 @@ ExtNums<long long unsigned>& UInt128::operator/(ExtNums& b){
 }
 
 std::istream& operator>>(std::istream& in, UInt128& number){
+	const unsigned digits_count = 39;
+	unsigned read_digits=0;
 	UInt128 result(0, 0);
 	char c = in.get();
+	if ((c<'0') || (c>'9')){
+		in.setstate(std::ios_base::badbit);
+		return in;
+	}
 	UInt128 _10(0, 10);
-	while ((c!= '\n' )&&(c != 0)){
+	while ((c>='0') && (c<='9') && (read_digits<digits_count)){
 		UInt128 digit(0, c-(char)(48));
-		//UInt128& oldresult = result;
 		result = result*_10+digit;
-		//delete &oldresult;
 		c = in.get();
+		read_digits++;
+	}
+	if (read_digits==digits_count){
+		c = in.get();
+		if ((c>='0') && (c<='9')){
+			in.setstate(std::ios_base::badbit);
+			return in;
+		}
 	}
 	number.big = result.getBig();
 	number.little = result.getLittle();
