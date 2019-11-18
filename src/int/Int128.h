@@ -17,6 +17,7 @@ class Int128 : public ExtNums<long long int>
         ExtNums<long long int>& operator*(ExtNums&);
         ExtNums<long long int>& operator/(ExtNums&);
         friend std::ostream& operator<<(std::ostream&, Int128&);
+        friend std::istream& operator>>(std::istream&, Int128&);
 	protected:
 };
 

@@ -138,3 +138,48 @@ ExtNums<long long int>& Int128::operator*(ExtNums& b){
 ExtNums<long long int>& Int128::operator/(ExtNums& b){
 	return (ExtNums&)(this->operator/((Int128&)(b)));
 }
+std::istream& operator>>(std::istream& in, Int128& number){
+	const unsigned digits_count = 39;
+	unsigned read_digits=0;
+	Int128 result(0, 0);
+	char c = in.get();
+	bool negative=false;
+	if (c == '-'){
+		negative = true;
+		c = in.get();
+	}
+	if ((c<'0') || (c>'9')){
+		in.setstate(std::ios_base::badbit);
+		return in;
+	}
+	Int128 _10(0, 10);
+	while ((c>='0') && (c<='9') && (read_digits<digits_count)){
+		Int128 digit(0, c-(char)(48));
+		result = result*_10+digit;
+		c = in.get();
+		read_digits++;
+	}
+	if (read_digits==digits_count){
+		c = in.get();
+		if ((c>='0') && (c<='9')){
+			in.setstate(std::ios_base::badbit);
+			return in;
+		}
+	}
+	number.big = result.getBig();
+	number.little = result.getLittle();
+	std::cout << "big = " << number.big << " little = " << number.little << std::endl;
+	if (negative){
+		number.big = ~number.big;
+		number.little = ~number.little;
+		std::cout << "big = " << number.big << " little = " << number.little << std::endl;
+		asm(
+			"addq %%rbx, %%rax\n\t"
+			"adcq %%rcx, %%rdx\n\t"
+			: "=a" (number.little), "=d" (number.big)
+			: "b" (number.little), "a" (1), "c" (number.big), "d" (0)
+		);
+		std::cout << "big = " << number.big << " little = " << number.little << std::endl;
+	}
+	return in;
+}
