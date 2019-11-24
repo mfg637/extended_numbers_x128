@@ -1,9 +1,30 @@
 #include <iostream>
+#include <fstream>
+#include "src/deserialisation.h"
 #include "src/int/UInt128.h"
 #include "src/int/Int128.h"
 
 int main(int argc, char **argv)
 {
+	std::ifstream test("test.bin");
+	if (test.is_open()){
+		ExtNumsArray<long long unsigned> a = deserialize(test);
+		for (unsigned i = 0; i<a.array_size; i++){
+			ExtNums<long long unsigned>* current_elem = a.array[i];
+			if (typeid(*current_elem) == typeid(UInt128)){
+				UInt128 _c = ((UInt128)(*current_elem));
+				UInt128& __c = _c;
+				std::cout << __c;
+			}/*else if (typeid(*current_elem) == typeid(Int128)){
+				Int128 _c = ((Int128)(*current_elem));
+				Int128& __c = _c;
+				std::cout << __c;
+			}*/
+			std::cout << ' ';
+		}
+		std::cout << std::endl;
+		test.close();
+	}
     std::cout << "Hello world!" << std::endl;
 	//overflow test
 	UInt128 a(0, 0xffffffffffffffff);
@@ -58,5 +79,13 @@ int main(int argc, char **argv)
 	std::cout << "h = " << h << std::endl;
 	Int128 m("-150");
 	std::cout << "m = " << m << std::endl;
+	std::ofstream test_file("test.bin");
+	ExtNums<long long unsigned>** array = new ExtNums<long long unsigned>*[3];
+	array[0]=&a;
+	array[1]=&b;
+	array[2]=&result1;
+	serialize(array, 3, test_file);
+	test_file.close();
+	delete[] array;
     return 0;
 }

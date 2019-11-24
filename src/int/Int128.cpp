@@ -1,5 +1,6 @@
 #include "Int128.h"
 #include <sstream>
+#include <typeinfo>
 
 Int128::Int128(long long int big_part, long long unsigned little_part)
 {
@@ -11,6 +12,13 @@ Int128::Int128(const char* string){
 	std::stringstream s;
 	s << string;
 	s >> *this;
+}
+
+Int128::Int128(ExtNums<long long int>& n){
+	if (typeid(n)==typeid(Int128)){
+		this->big = n.getBig();
+		this->little = n.getLittle();
+	}
 }
 
 Int128::~Int128()

@@ -13,6 +13,11 @@ UInt128:: UInt128(const char* string){
 	s >> *this;
 }
 
+UInt128::UInt128(ExtNums<long long unsigned int>& n){
+	big = n.getBig();
+	little = n.getLittle();
+}
+
 UInt128::~UInt128()
 {
     //dtor
