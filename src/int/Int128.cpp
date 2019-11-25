@@ -71,6 +71,11 @@ Int128& Int128::operator/(Int128& b){
 	#endif
     return *(new Int128(result_count_big, result_count_little));
 }
+
+std::ostream& Int128::text_out(std::ostream& out){
+	return (out << *this);
+}
+
 std::ostream& operator<<(std::ostream& out, Int128& number){
 	const unsigned digits_count = 39;
 	calc_results<long long int> results1 = number.sub(0, 1);

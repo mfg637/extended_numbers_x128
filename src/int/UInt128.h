@@ -23,6 +23,7 @@ class UInt128 : public ExtNumsBase<long long unsigned>, public IExtNums
         IExtNums& operator*(IExtNums&);
         IExtNums& operator/(IExtNums&);
         void serialize(std::ostream&);
+		std::ostream& text_out(std::ostream&);
         friend std::ostream& operator<<(std::ostream&, UInt128&);
         friend std::istream& operator>>(std::istream&, UInt128&);
 };

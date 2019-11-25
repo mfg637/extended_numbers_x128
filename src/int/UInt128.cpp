@@ -67,6 +67,11 @@ UInt128& UInt128::operator/(UInt128& b){
 	#endif
     return *(new UInt128(result_count_big, result_count_little));
 }
+
+std::ostream& UInt128::text_out(std::ostream& out){
+	return (out << *this);
+}
+
 std::ostream& operator<<(std::ostream& out, UInt128& number){
 	const unsigned digits_count = 39;
 	char digits[digits_count];

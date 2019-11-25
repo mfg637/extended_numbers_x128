@@ -26,6 +26,8 @@ class IExtNums{
     virtual IExtNums& operator-(IExtNums&)=0;
     virtual IExtNums& operator*(IExtNums&)=0;
     virtual IExtNums& operator/(IExtNums&)=0;
+	virtual void serialize(std::ostream&)=0;
+	virtual std::ostream& text_out(std::ostream&)=0;
 };
 
 template <typename BIG_PART_TYPE>
@@ -162,7 +164,6 @@ class ExtNumsBase
 			return results;
 		}
     public:
-    	virtual void serialize(std::ostream&)=0;
         BIG_PART_TYPE getBig(){return big;}
         long long unsigned getLittle(){return little;}
         //virtual std::ostream& operator<<(std::ostream&)=0;

@@ -8,46 +8,17 @@ int main(int argc, char **argv)
 {
 	std::ifstream test("test.bin");
 	if (test.is_open()){
-		ExtNumsArray<long long unsigned> a = deserialize(test);
+		ExtNumsArray a = deserialize(test);
 		std::cout << a.array_size << ' ';
 		for (unsigned i = 0; i<a.array_size; i++){
-			ExtNumsBase<long long unsigned>* current_elem = a.array[i];
-			if (typeid(*current_elem) == typeid(UInt128)){
-				UInt128 _c = ((UInt128)(*current_elem));
-				UInt128& __c = _c;
-				std::cout << __c;
-			}else{
-				std::cout << "incopatible type\n";
-			}/*else if (typeid(*current_elem) == typeid(Int128)){
-				Int128 _c = ((Int128)(*current_elem));
-				Int128& __c = _c;
-				std::cout << __c;
-			}*/
+			IExtNums* current_elem = a.array[i];
+			current_elem->text_out(std::cout);
 			std::cout << ' ';
 		}
 		std::cout << std::endl;
 		test.close();
 		delete [] a.array;
 	}
-	/*std::ifstream test2("test2.bin");
-	if (test2.is_open()){
-		ExtNumsArray<long long int> a = deserialize(test2);
-		for (unsigned i = 0; i<a.array_size; i++){
-			ExtNumsBase<long long unsigned>* current_elem = a.array[i];
-			if (typeid(*current_elem) == typeid(UInt128)){
-				UInt128 _c = ((UInt128)(*current_elem));
-				UInt128& __c = _c;
-				std::cout << __c;
-			}/*else if (typeid(*current_elem) == typeid(Int128)){
-				Int128 _c = ((Int128)(*current_elem));
-				Int128& __c = _c;
-				std::cout << __c;
-			}
-			std::cout << ' ';
-		}
-		std::cout << std::endl;
-		test.close();
-	}*/
     std::cout << "Hello world!" << std::endl;
 	//overflow test
 	UInt128 a(0, 0xffffffffffffffff);
@@ -103,19 +74,15 @@ int main(int argc, char **argv)
 	Int128 m("-150");
 	std::cout << "m = " << m << std::endl;
 	std::ofstream test_file("test.bin");
-	ExtNumsBase<long long unsigned>** array = new ExtNumsBase<long long unsigned>*[3];
+	IExtNums** array = new IExtNums*[6];
 	array[0]=&a;
-	array[1]=&b;
-	array[2]=&result1;
-	serialize(array, 3, test_file);
+	array[1]=&d;
+	array[2]=&b;
+	array[3]=&result1;
+	array[4]=&e;
+	array[5]=&result6;
+	serialize(array, 6, test_file);
 	test_file.close();
-	std::ofstream test2_file("test2.bin");
-	ExtNumsBase<long long int>** array1 = new ExtNumsBase<long long int>*[3];
-	array1[0]=&d;
-	array1[1]=&e;
-	array1[2]=&result6;
-	serialize(array1, 3, test2_file);
-	test2_file.close();
 	delete[] array;
     return 0;
 }
