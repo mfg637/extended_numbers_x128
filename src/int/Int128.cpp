@@ -14,7 +14,7 @@ Int128::Int128(const char* string){
 	s >> *this;
 }
 
-Int128::Int128(ExtNums<long long int>& n){
+Int128::Int128(ExtNumsBase<long long int>& n){
 	if (typeid(n)==typeid(Int128)){
 		this->big = n.getBig();
 		this->little = n.getLittle();
@@ -138,20 +138,20 @@ std::ostream& operator<<(std::ostream& out, Int128& number){
     return out;
 }
 
-ExtNums<long long int>& Int128::operator+(ExtNums& b){
-	return (ExtNums&)(this->operator+((Int128&)(b)));
+IExtNums& Int128::operator+(IExtNums& b){
+	return (IExtNums&)(this->operator+((Int128&)(b)));
 }
 
-ExtNums<long long int>& Int128::operator-(ExtNums& b){
-	return (ExtNums&)(this->operator-((Int128&)(b)));
+IExtNums& Int128::operator-(IExtNums& b){
+	return (IExtNums&)(this->operator-((Int128&)(b)));
 }
 
-ExtNums<long long int>& Int128::operator*(ExtNums& b){
-	return (ExtNums&)(this->operator*((Int128&)(b)));
+IExtNums& Int128::operator*(IExtNums& b){
+	return (IExtNums&)(this->operator*((Int128&)(b)));
 }
 
-ExtNums<long long int>& Int128::operator/(ExtNums& b){
-	return (ExtNums&)(this->operator/((Int128&)(b)));
+IExtNums& Int128::operator/(IExtNums& b){
+	return (IExtNums&)(this->operator/((Int128&)(b)));
 }
 std::istream& operator>>(std::istream& in, Int128& number){
 	const unsigned digits_count = 39;
@@ -194,4 +194,10 @@ std::istream& operator>>(std::istream& in, Int128& number){
 		);
 	}
 	return in;
+}
+
+void Int128::serialize(std::ostream& out){
+	out << (char)(2);
+	out.write((char*)(&big), sizeof(big));
+	out.write((char*)(&little), sizeof(little));
 }

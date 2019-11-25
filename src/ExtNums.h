@@ -18,8 +18,18 @@ struct calc_results{
 	}
 };
 
+class IExtNums{
+	public:
+	IExtNums() {}
+	virtual ~IExtNums() = default;
+    virtual IExtNums& operator+(IExtNums&)=0;
+    virtual IExtNums& operator-(IExtNums&)=0;
+    virtual IExtNums& operator*(IExtNums&)=0;
+    virtual IExtNums& operator/(IExtNums&)=0;
+};
+
 template <typename BIG_PART_TYPE>
-class ExtNums
+class ExtNumsBase
 {
     private:
 	protected:
@@ -152,12 +162,7 @@ class ExtNums
 			return results;
 		}
     public:
-        ExtNums() {}
-        virtual ~ExtNums() = default;
-        virtual ExtNums& operator+(ExtNums&)=0;
-        virtual ExtNums& operator-(ExtNums&)=0;
-        virtual ExtNums& operator*(ExtNums&)=0;
-        virtual ExtNums& operator/(ExtNums&)=0;
+    	virtual void serialize(std::ostream&)=0;
         BIG_PART_TYPE getBig(){return big;}
         long long unsigned getLittle(){return little;}
         //virtual std::ostream& operator<<(std::ostream&)=0;

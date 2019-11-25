@@ -3,7 +3,7 @@
 
 #include "../ExtNums.h"
 
-class UInt128 : public ExtNums<long long unsigned>
+class UInt128 : public ExtNumsBase<long long unsigned>, public IExtNums
 {
     private:
 
@@ -12,16 +12,17 @@ class UInt128 : public ExtNums<long long unsigned>
     public:
         UInt128(long long unsigned big_part, long long unsigned little_part);
         UInt128(const char*);
-		UInt128(ExtNums<long long unsigned int>&);
+		UInt128(ExtNumsBase<long long unsigned int>&);
         ~UInt128();
         UInt128& operator+(UInt128&);
         UInt128& operator-(UInt128&);
         UInt128& operator*(UInt128&);
         UInt128& operator/(UInt128&);
-		ExtNums<long long unsigned>& operator+(ExtNums&);
-        ExtNums<long long unsigned>& operator-(ExtNums&);
-        ExtNums<long long unsigned>& operator*(ExtNums&);
-        ExtNums<long long unsigned>& operator/(ExtNums&);
+		IExtNums& operator+(IExtNums&);
+        IExtNums& operator-(IExtNums&);
+        IExtNums& operator*(IExtNums&);
+        IExtNums& operator/(IExtNums&);
+        void serialize(std::ostream&);
         friend std::ostream& operator<<(std::ostream&, UInt128&);
         friend std::istream& operator>>(std::istream&, UInt128&);
 };
