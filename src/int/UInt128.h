@@ -26,6 +26,12 @@ class UInt128 : public ExtNumsBase<long long unsigned>, public IExtNums
 		std::ostream& text_out(std::ostream&);
         friend std::ostream& operator<<(std::ostream&, UInt128&);
         friend std::istream& operator>>(std::istream&, UInt128&);
+		long long int getSignedBig(){
+			return this->getBig();
+		}
+		long long unsigned getLittle(){
+			return ExtNumsBase::getLittle();
+		}
 };
 
 #endif // UINT128_H

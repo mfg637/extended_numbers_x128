@@ -22,6 +22,12 @@ class Int128 : public ExtNumsBase<long long int>, public IExtNums
 		std::ostream& text_out(std::ostream&);
         friend std::ostream& operator<<(std::ostream&, Int128&);
         friend std::istream& operator>>(std::istream&, Int128&);
+		long long int getSignedBig(){
+			return this->getBig();
+		}
+		long long unsigned getLittle(){
+			return ExtNumsBase::getLittle();
+		}
 	protected:
 };
 

@@ -1,6 +1,7 @@
 #include "Int128.h"
 #include <sstream>
 #include <typeinfo>
+#include <iostream>
 
 Int128::Int128(long long int big_part, long long unsigned little_part)
 {
@@ -144,7 +145,8 @@ std::ostream& operator<<(std::ostream& out, Int128& number){
 }
 
 IExtNums& Int128::operator+(IExtNums& b){
-	return (IExtNums&)(this->operator+((Int128&)(b)));
+	Int128 c(b.getSignedBig(), b.getLittle());
+	return ((*this) + c);
 }
 
 IExtNums& Int128::operator-(IExtNums& b){

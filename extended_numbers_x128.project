@@ -63,7 +63,7 @@
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>
-      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="yes">
         <DebuggerSearchPaths/>
         <PostConnectCommands/>
         <StartupCommands/>
@@ -93,11 +93,14 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="src">
+    <File Name="main.cpp"/>
     <File Name="src/ExtNums.h"/>
+    <File Name="src/deserialisation.h"/>
     <VirtualDirectory Name="int">
       <File Name="src/int/UInt128.h"/>
       <File Name="src/int/UInt128.cpp"/>
+      <File Name="src/int/Int128.h"/>
+      <File Name="src/int/Int128.cpp"/>
     </VirtualDirectory>
-    <File Name="main.cpp"/>
   </VirtualDirectory>
 </CodeLite_Project>

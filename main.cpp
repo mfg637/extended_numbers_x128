@@ -10,11 +10,16 @@ int main(int argc, char **argv)
 	if (test.is_open()){
 		ExtNumsArray a = deserialize(test);
 		std::cout << a.array_size << ' ';
+		//IExtNums& sum = *(new Int128(0, 0));
+		Int128 sum(0, 0);
 		for (unsigned i = 0; i<a.array_size; i++){
 			IExtNums* current_elem = a.array[i];
 			current_elem->text_out(std::cout);
+			sum = (Int128&)((IExtNums&)(sum) + *current_elem);
 			std::cout << ' ';
 		}
+		std::cout << std::endl << "sum of array elems: ";
+		sum.text_out(std::cout);
 		std::cout << std::endl;
 		test.close();
 		delete [] a.array;
