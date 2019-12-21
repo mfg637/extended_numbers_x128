@@ -1,33 +1,17 @@
 #pragma once
 
-#include <iostream>
 #include <cstring>
-#include <typeinfo>
 #include "ExtNums.h"
 #include "int/UInt128.h"
 #include "int/Int128.h"
 
 class Fixed128: ExtNumsBase<long long int>{};
 
-void write_bin_int64(char* bytes, std::ostream& out){
-	for (unsigned i = 0; i < 8; i++){
-		out<<bytes[i];
-	}
-}
-
-void read_bin_int64(char* bytes, std::istream& in){
-	for (unsigned i = 0; i < 8; i++){
-		bytes[i] = in.get();
-	}
-}
-
 void serialize(IExtNums** array, long unsigned int array_size, std::ostream& out){
 	out<<"BIN";
 	out.write((char*)(&array_size), 4);
 	for (unsigned i=0; i<array_size; i++){
 		IExtNums* current_elem = array[i];
-		//current_elem->text_out(std::cout);
-		//std::cout << std::endl;
 		current_elem->serialize(out);
 	}
 }
