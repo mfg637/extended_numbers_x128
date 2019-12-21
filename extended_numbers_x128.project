@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Project Name="extended_numbers_x128" Version="10.0.0" InternalType="Console">
+<CodeLite_Project Name="extended_numbers_x128" Version="11000" InternalType="Console">
+  <Plugins>
+    <Plugin Name="qmake">
+      <![CDATA[00010001N0005Debug000000000000]]>
+    </Plugin>
+  </Plugins>
   <Description/>
   <Dependencies/>
+  <VirtualDirectory Name="src">
+    <File Name="main.cpp"/>
+    <File Name="src/ExtNums.h"/>
+    <File Name="src/deserialisation.h"/>
+    <VirtualDirectory Name="int">
+      <File Name="src/int/UInt128.h"/>
+      <File Name="src/int/UInt128.cpp"/>
+      <File Name="src/int/Int128.h"/>
+      <File Name="src/int/Int128.cpp"/>
+    </VirtualDirectory>
+  </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -13,7 +29,7 @@
       <ResourceCompiler Options=""/>
     </GlobalSettings>
     <Configuration Name="Debug" CompilerType="GCC" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-g;-O0;-Wall" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+      <Compiler Options="-g;-O0;-std=c++11;-Wall" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
       </Compiler>
       <Linker Options="" Required="yes"/>
@@ -92,15 +108,4 @@
       </Completion>
     </Configuration>
   </Settings>
-  <VirtualDirectory Name="src">
-    <File Name="main.cpp"/>
-    <File Name="src/ExtNums.h"/>
-    <File Name="src/deserialisation.h"/>
-    <VirtualDirectory Name="int">
-      <File Name="src/int/UInt128.h"/>
-      <File Name="src/int/UInt128.cpp"/>
-      <File Name="src/int/Int128.h"/>
-      <File Name="src/int/Int128.cpp"/>
-    </VirtualDirectory>
-  </VirtualDirectory>
 </CodeLite_Project>

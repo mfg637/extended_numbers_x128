@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <random>
 #include "src/deserialisation.h"
 #include "src/int/UInt128.h"
 #include "src/int/Int128.h"
@@ -12,8 +13,12 @@ int main(int argc, char **argv)
 		std::cout << a.array_size << ' ';
 		//IExtNums& sum = *(new Int128(0, 0));
 		Int128 sum(0, 0);
+		Int128 incr(0, 1);
 		for (unsigned i = 0; i<a.array_size; i++){
 			IExtNums* current_elem = a.array[i];
+			IExtNums* prev_value = current_elem;
+			current_elem = &((*prev_value) + incr);
+			delete prev_value;
 			current_elem->text_out(std::cout);
 			sum = (Int128&)((IExtNums&)(sum) + *current_elem);
 			std::cout << ' ';
@@ -80,12 +85,25 @@ int main(int argc, char **argv)
 	std::cout << "m = " << m << std::endl;
 	std::ofstream test_file("test.bin");
 	IExtNums** array = new IExtNums*[6];
-	array[0]=&a;
-	array[1]=&d;
-	array[2]=&b;
-	array[3]=&result1;
-	array[4]=&e;
-	array[5]=&result6;
+	std::default_random_engine generator;
+	std::uniform_int_distribution<long long int> signed_distribution(std::numeric_limits<long long int>::min(), std::numeric_limits<long long int>::max());
+	std::uniform_int_distribution<long long unsigned> unsigned_distribution;
+	std::uniform_int_distribution<char> bool_distribution(0, 1);	
+	for (int i=0; i<6; i++){
+		bool isSigned = (bool)((bool_distribution(generator))>0);
+		long long int b = 0;
+		long long unsigned l = unsigned_distribution(generator);
+		if (isSigned){
+			bool isNegate = bool_distribution(generator);
+			if (isNegate){
+				b = -1;
+				l = (~l)+1;
+			}
+			array[i] = new Int128(b, l);
+		}else{
+			array[i] = new UInt128(0, l);
+		}
+	}
 	serialize(array, 6, test_file);
 	test_file.close();
 	delete[] array;

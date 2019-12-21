@@ -23,12 +23,11 @@ void read_bin_int64(char* bytes, std::istream& in){
 
 void serialize(IExtNums** array, long unsigned int array_size, std::ostream& out){
 	out<<"BIN";
-	char* array_size_char_ptr = (char*)(&array_size);
-	for (unsigned i = 0; i < 4; i++){
-		out<<array_size_char_ptr[i];
-	}
+	out.write((char*)(&array_size), 4);
 	for (unsigned i=0; i<array_size; i++){
 		IExtNums* current_elem = array[i];
+		//current_elem->text_out(std::cout);
+		//std::cout << std::endl;
 		current_elem->serialize(out);
 	}
 }

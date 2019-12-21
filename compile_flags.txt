@@ -6,4 +6,4 @@
 -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed
 -I/usr/include/x86_64-linux-gnu
 -I/usr/include
--I/mnt/data/Matvey/temp/codelite_workspace/labosvalka2019_2020/extended_numbers_x128
+-I/home/mfg637/~/temp/codelite_workspace/labosvalka2019_2020/extended_numbers_x128
