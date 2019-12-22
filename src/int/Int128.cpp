@@ -47,10 +47,12 @@ Int128& Int128::operator/(Int128& b){
 	#ifdef __x86_64__
 		if (b.big == 0){
 			asm(
-				"divq %%rbx\n\t"
+				"idivq %%rbx\n\t"
 				: "=a" (result_count_little)
 				: "a" (normal_little), "d" (normal_big), "b" (b.little)
 			);
+			if (result_count_little&0x8000000000000000LL)
+				result_count_big = -1;
 		}else{
 			while (((normal_big == b.big) && (normal_little >= b.little)) || (normal_big > b.big)){
 				asm(

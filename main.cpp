@@ -35,6 +35,8 @@ int main(int argc, char **argv)
 	std::cout << "a = " << a << std::endl;
 	UInt128 b(0, 2);
 	std::cout << "b = " << b << std::endl;
+	UInt128 print_test(0xffffffffffffffff, 0xffffffffffffffff);
+	std::cout << "print_test = " << print_test << std::endl;
 	UInt128 result1 = a+b;
 	std::cout << "result1 = " << result1 << std::endl;
 	UInt128 result2 = result1 - b;
@@ -55,7 +57,7 @@ int main(int argc, char **argv)
 	std::cout<< "result6 = " << result6 <<std::endl;
 	Int128 result7 = d - e;
 	std::cout << "result7 = " << result7 << std::endl;
-	Int128 result8 = result6 * e;
+	Int128 result8 = d * e;
 	std::cout << "result8 = " << result8 << std::endl;
 	Int128 result9 = result8 / e;
 	std::cout << "result9 = " << result9 << std::endl;
